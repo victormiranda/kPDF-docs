@@ -15,7 +15,21 @@ data class Paddings(
                         bottom = Padding(Size.ZERO),
                         left = Padding(Size.ZERO),
                 )
+
+        fun buildSameSizePaddings(size: Size) =
+            Paddings(
+                top = Padding(size),
+                right = Padding(size),
+                bottom = Padding(size),
+                left = Padding(size),
+            )
     }
+
+    val horizontalPadding: Size
+        get() = left.size + right.size
+
+    val verticalPadding: Size
+        get() = top.size + bottom.size
 }
 
 data class Padding(val size: Size = Size.ZERO)

@@ -1,6 +1,7 @@
 package es.valhallalabs.kpdf.api.component.boxmodel
 
 import es.valhallalabs.kpdf.api.size.Size
+import org.w3c.dom.css.Rect
 
 
 /**
@@ -23,4 +24,15 @@ data class BoxModel(
         val margins: Margins,
         val positioning: BoxPositioning,
         val parentBox: BoxModel? = null
-)
+) {
+
+    val effectiveWidth: Size
+        get() = (width - paddings.horizontalPadding)
+
+    val effectiveHeight: Size
+        get() = (height + paddings.verticalPadding)
+
+    val innerRectangle: Rectangle
+        get() = Rectangle(width = effectiveWidth, height = effectiveHeight)
+
+}
