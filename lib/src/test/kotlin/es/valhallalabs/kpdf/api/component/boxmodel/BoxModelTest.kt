@@ -19,7 +19,7 @@ internal class BoxModelTest {
             paddings = Paddings.buildSameSizePaddings(PointSize(paddingsSize))
         )
 
-        val expectedA4BoxSizeWidthInPoints = 595.2756f
+		val expectedA4BoxSizeWidthInPoints = 595.2756f
 
         assertThat(a4BoxModel.width.points)
                 .isEqualTo(expectedA4BoxSizeWidthInPoints)
