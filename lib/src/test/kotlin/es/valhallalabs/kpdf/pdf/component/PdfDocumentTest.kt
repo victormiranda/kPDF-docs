@@ -14,11 +14,12 @@ import java.time.Instant
 internal class PdfDocumentTest {
 
 	private val document: PdfDocument = PdfDocument(
-		properties = DocumentProperties(requestedAt = Instant.now(), tenantId = "23", pageFormat = PageFormat.PAGE_BASE_A4),
+		properties = DocumentProperties(
+			requestedAt = Instant.now(), tenantId = "23", pageFormat = PageFormat.PAGE_BASE_A4
+		),
 		resources = listOf(
 			LocalDocumentResource(resourceName = "Acme font", resourceLocation = "fonts/acme.ttf")
-		),
-		sections =  listOf(
+		), sections = listOf(
 			DocumentSection(
 				box = PageFormat.PAGE_BASE_A4,
 				pages = listOf(
@@ -30,22 +31,22 @@ internal class PdfDocumentTest {
 		)
 	)
 
-	@Test fun `check basic A4 document object page size `(){
+	@Test fun `check basic A4 document object page size `() {
 		val a4BoxModel: BoxModel = document.box
 
 		assertThat(a4BoxModel.width.points).isEqualTo(595.2756f)
 		assertThat(a4BoxModel.height.points).isEqualTo(841.88983f)
 	}
 
-	@Test fun `check basic A4 document object inner container size `(){
+	@Test fun `check basic A4 document object inner container size `() {
 		val firstPage: FullContainerPage = document.sections[0].pages[0] as FullContainerPage
 
 		assertThat(firstPage.box.width.points).isEqualTo(523.2756f)
 		assertThat(firstPage.box.height.points).isEqualTo(769.88983f)
 	}
 
-	@Test fun `check access to local classpath document resources`(){
-        val resource = document.resources[0]
+	@Test fun `check access to local classpath document resources`() {
+		val resource = document.resources[0]
 
 		assertThat(resource.resource).exists()
 	}

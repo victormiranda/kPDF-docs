@@ -17,44 +17,44 @@ import es.valhallalabs.kpdf.api.size.Size
  * @property parentBox reference to parent of this box model
  */
 interface BoxModel {
-    val width: Size
-    val height: Size
-    val paddings: Paddings
-    val margins: Margins
-    val positioning: BoxPositioning
-    val parentBox: BoxModel?
+	val width: Size
+	val height: Size
+	val paddings: Paddings
+	val margins: Margins
+	val positioning: BoxPositioning
+	val parentBox: BoxModel?
 
 
-    val effectiveWidth: Size
-        get() = (width - paddings.horizontalPadding - margins.horizontalMargin)
+	val effectiveWidth: Size
+		get() = (width - paddings.horizontalPadding - margins.horizontalMargin)
 
-    val effectiveHeight: Size
-        get() =
-            (height - paddings.verticalPadding - margins.verticalMargin)
+	val effectiveHeight: Size
+		get() =
+			(height - paddings.verticalPadding - margins.verticalMargin)
 
-    val innerRectangle: Rectangle
-        get() = Rectangle(width = effectiveWidth, height = effectiveHeight)
+	val innerRectangle: Rectangle
+		get() = Rectangle(width = effectiveWidth, height = effectiveHeight)
 
-    val innerBox: BoxModel
+	val innerBox: BoxModel
 }
 
 open class Box(
-    override val width: Size,
-    override val height: Size,
-    override val paddings: Paddings,
-    override val margins: Margins,
-    override val positioning: BoxPositioning,
-    override val parentBox: BoxModel? = null
+	override val width: Size,
+	override val height: Size,
+	override val paddings: Paddings,
+	override val margins: Margins,
+	override val positioning: BoxPositioning,
+	override val parentBox: BoxModel? = null
 ) : BoxModel {
 
-    override val innerBox: BoxModel
-        get() = Box(
-            width = this.effectiveWidth,
-            height = this.effectiveHeight,
-            paddings = Paddings.NO_PADDINGS,
-            margins = Margins.NO_MARGINS,
-            positioning = this.positioning,
-            parentBox = this
-        )
+	override val innerBox: BoxModel
+		get() = Box(
+			width = this.effectiveWidth,
+			height = this.effectiveHeight,
+			paddings = Paddings.NO_PADDINGS,
+			margins = Margins.NO_MARGINS,
+			positioning = this.positioning,
+			parentBox = this
+		)
 
 }

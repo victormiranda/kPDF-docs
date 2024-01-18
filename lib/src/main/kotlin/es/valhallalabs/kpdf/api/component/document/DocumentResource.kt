@@ -17,6 +17,8 @@ class LocalDocumentResource(
 ) : DocumentResource {
 
 	override val resource: Path
-		get() = Paths.get(this::class.java.classLoader.getResource(resourceLocation)?.toURI()
-			?: throw NoSuchElementException("resource $resourceLocation not found"))
+		get() = Paths.get(
+			this::class.java.classLoader.getResource(resourceLocation)?.toURI()
+				?: throw NoSuchElementException("resource $resourceLocation not found")
+		)
 }

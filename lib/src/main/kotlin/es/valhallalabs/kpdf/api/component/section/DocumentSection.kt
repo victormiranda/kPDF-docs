@@ -10,7 +10,7 @@ import es.valhallalabs.kpdf.api.component.page.Page
 class DocumentSection(
 	val pages: List<Page>,
 	override val box: BoxModel
-): ComposedComponent {
+) : ComposedComponent {
 
 	override val elements: List<Component>
 		get() = pages
