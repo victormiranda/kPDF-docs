@@ -4,11 +4,21 @@ import es.valhallalabs.kpdf.api.component.boxmodel.PageFormat
 import java.time.Instant
 import java.util.UUID
 
+/**
+ * A data class that represents the properties of a Document.
+ *
+ * @property jobId The ID of the tenant.
+ * @property generateIndexPage Flag that indicates if document index page should be generated.
+ * @property pageFormat The page format of the document.
+ * @property requestedAt The time at which the document was requested.
+ * @property processedAt The time at which the document was processed. Defaults to the current time.
+ */
 data class DocumentProperties(
+	val jobId: JobId,
+	val generateIndexPage: Boolean = false,
+	val pageFormat: PageFormat,
 	val requestedAt: Instant,
 	val processedAt: Instant = Instant.now(),
-	val jobId: UUID,
-	val pageFormat: PageFormat
 )
 
 typealias JobId = UUID

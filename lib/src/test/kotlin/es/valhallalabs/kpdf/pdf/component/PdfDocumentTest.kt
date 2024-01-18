@@ -2,12 +2,11 @@ package es.valhallalabs.kpdf.pdf.component
 
 import es.valhallalabs.kpdf.api.component.boxmodel.BoxModel
 import es.valhallalabs.kpdf.api.component.boxmodel.PageFormat
+import es.valhallalabs.kpdf.api.component.document.ClasspathDocumentResource
 import es.valhallalabs.kpdf.api.component.document.DocumentProperties
-import es.valhallalabs.kpdf.api.component.document.LocalDocumentResource
 import es.valhallalabs.kpdf.api.component.page.FullContainerPage
 import es.valhallalabs.kpdf.api.component.section.DocumentSection
 import org.assertj.core.api.Assertions.assertThat
-
 import org.junit.jupiter.api.Test
 import java.time.Instant
 import java.util.UUID
@@ -19,10 +18,11 @@ internal class PdfDocumentTest {
 			requestedAt = Instant.now(), jobId = UUID.randomUUID(), pageFormat = PageFormat.PAGE_BASE_A4
 		),
 		resources = listOf(
-			LocalDocumentResource(resourceName = "Acme font", resourceLocation = "fonts/acme.ttf")
+			ClasspathDocumentResource(resourceName = "Acme font", resourceLocation = "fonts/acme.ttf")
 		), sections = listOf(
 			DocumentSection(
 				box = PageFormat.PAGE_BASE_A4,
+				sectionName = "main section",
 				pages = listOf(
 					FullContainerPage(
 						box = PageFormat.PAGE_BASE_A4.innerBox as PageFormat
