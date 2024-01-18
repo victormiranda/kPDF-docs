@@ -10,12 +10,13 @@ import org.assertj.core.api.Assertions.assertThat
 
 import org.junit.jupiter.api.Test
 import java.time.Instant
+import java.util.UUID
 
 internal class PdfDocumentTest {
 
 	private val document: PdfDocument = PdfDocument(
 		properties = DocumentProperties(
-			requestedAt = Instant.now(), tenantId = "23", pageFormat = PageFormat.PAGE_BASE_A4
+			requestedAt = Instant.now(), jobId = UUID.randomUUID(), pageFormat = PageFormat.PAGE_BASE_A4
 		),
 		resources = listOf(
 			LocalDocumentResource(resourceName = "Acme font", resourceLocation = "fonts/acme.ttf")
