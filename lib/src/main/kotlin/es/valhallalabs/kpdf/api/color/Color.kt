@@ -1,5 +1,5 @@
+@file:Suppress("unused")
 package es.valhallalabs.kpdf.api.color
-
 sealed interface Color {
 
 	val javaColor: java.awt.Color
@@ -9,6 +9,7 @@ sealed interface Color {
 	fun darken(percent: Int): Color
 
 	companion object {
+		@SuppressWarnings("unused")
 		val TRANSPARENT = RgbaColor(0, 0, 0, 0f)
 		val WHITE = RgbaColor(255, 255, 255)
 		val BLACK = RgbaColor(0, 0, 0)
