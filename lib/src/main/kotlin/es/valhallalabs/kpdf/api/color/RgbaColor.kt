@@ -1,5 +1,12 @@
 package es.valhallalabs.kpdf.api.color
 
+/**
+ * RgbaColor is a data class used to represent colors in RGBA format.
+ * @property red the red component of the color.
+ * @property green the green component of the color.
+ * @property blue the blue component of the color.
+ * @property alpha the alpha (transparency) component of the color.
+ */
 data class RgbaColor(
 	val red: Int,
 	val green: Int,
@@ -33,4 +40,11 @@ data class RgbaColor(
 	}
 }
 
+/**
+ * RgbaComponents is a data class used to represent the components of a color in RGBA format.
+ * @property R the red component.
+ * @property G the green component.
+ * @property B the blue component.
+ * @property A the alpha(transparency) component.
+ */
 data class RgbaComponents<R, G, B, A>(val red: R, val green: G, val blue: B, val alpha: A)

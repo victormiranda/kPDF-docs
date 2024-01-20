@@ -1,11 +1,32 @@
 @file:Suppress("unused")
 package es.valhallalabs.kpdf.api.color
+
+/**
+ * Color interface provides a definition for color-related operations.
+ */
 sealed interface Color {
 
+	/**
+	 * Gets the corresponding Java Color.
+	 *
+	 * @return Returns the java.awt.Color representation.
+	 */
 	val javaColor: java.awt.Color
 
+	/**
+	 * Fades the color by a specified percentage.
+	 *
+	 * @param percent The percentage to fade the color by.
+	 * @return Returns a new Color that represents the faded color.
+	 */
 	fun fade(percent: Int): Color
 
+	/**
+	 * Darkens the color by a specified percentage.
+	 *
+	 * @param percent The percentage to darken the color by.
+	 * @return Returns a new Color that represents the darkened color.
+	 */
 	fun darken(percent: Int): Color
 
 	companion object {
@@ -31,8 +52,17 @@ sealed interface Color {
 
 }
 
+/**
+ * ColorUtils is a utility class that provides methods for converting colors from one format to another.
+ */
 object ColorUtils {
 
+	/**
+	 * Convert hexadecimal color code to RGBA color.
+	 *
+	 * @param hexColorCode The hexadecimal color code as input.
+	 * @return Returns a RgbaComponents object which contains individual RGBA components for the color.
+	 */
 	fun hexToRgba(hexColorCode: HexColorCode): RgbaComponents<Int, Int, Int, Float> {
 		val hex = hexColorCode.toString()
 		val r = hex.substring(1, 3).toInt(16)
@@ -42,6 +72,12 @@ object ColorUtils {
 		return RgbaComponents(r, g, b, a)
 	}
 
+	/**
+	 * Convert RGBA color to hexadecimal color code.
+	 *
+	 * @param rgba The RgbaComponents color as input.
+	 * @return Returns a HexColorCode which represents the RGBA color as hexadecimal color code.
+	 */
 	fun rgbaToHex(rgba: RgbaComponents<Int, Int, Int, Float>): HexColorCode {
 		val (red, green, blue, alpha) = rgba
 		val alphaHex = (alpha * 255).toInt()
