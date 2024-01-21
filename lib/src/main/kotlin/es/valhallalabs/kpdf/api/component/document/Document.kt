@@ -2,12 +2,15 @@ package es.valhallalabs.kpdf.api.component.document
 
 import es.valhallalabs.kpdf.api.component.ComponentType
 import es.valhallalabs.kpdf.api.component.ComposedComponent
+import es.valhallalabs.kpdf.api.component.section.DocumentSection
 
 /**
  * Interface for Document modeling within the system.
  */
 interface Document : ComposedComponent {
 
+	val sections: List<DocumentSection>
+		get() = elements as List<DocumentSection>
 	/**
 	 * The resources associated with this document.
 	 */
