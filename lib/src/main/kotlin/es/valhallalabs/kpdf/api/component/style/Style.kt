@@ -1,5 +1,8 @@
 package es.valhallalabs.kpdf.api.component.style
 
+import es.valhallalabs.kpdf.api.color.Color
+
+
 /**
  * Interface that represents a style
  *
@@ -9,4 +12,13 @@ package es.valhallalabs.kpdf.api.component.style
 interface Style {
 	val name: String
 	val parentStyle: Style?
+	val backgroundColor: Color
+	val foregroundColor: Color
 }
+
+open class BaseStyle(
+	override val name: String = "BASE_STYLE",
+	override val parentStyle: Style? = null,
+	override val backgroundColor: Color = Color.TRANSPARENT,
+	override val foregroundColor: Color = Color.BLACK
+) : Style
