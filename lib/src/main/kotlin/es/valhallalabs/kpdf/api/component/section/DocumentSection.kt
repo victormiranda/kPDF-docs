@@ -1,10 +1,11 @@
 package es.valhallalabs.kpdf.api.component.section
 
-import es.valhallalabs.kpdf.api.component.Component
 import es.valhallalabs.kpdf.api.component.ComponentType
 import es.valhallalabs.kpdf.api.component.ComposedComponent
 import es.valhallalabs.kpdf.api.component.boxmodel.BoxModel
 import es.valhallalabs.kpdf.api.component.page.Page
+import es.valhallalabs.kpdf.api.component.style.BaseStyle
+import es.valhallalabs.kpdf.api.component.style.Style
 
 /**
  * Document section represents a section in a document structure.
@@ -19,10 +20,11 @@ class DocumentSection(
 	val isTitleSection: Boolean = false,
 	val sectionName: String,
 	val pages: List<Page>,
+	override val style: Style = BaseStyle(),
 	override val box: BoxModel
 ) : ComposedComponent {
 
-	override val elements: List<Component>
+	override val elements: List<Page>
 		get() = pages
 	override val componentType: ComponentType
 		get() = ComponentType.SECTION
