@@ -1,12 +1,18 @@
 [versions]
-junit-jupiter-engine = "5.10.0"
+apache-pdfbox = "3.0.1"
+junit5 = "5.10.0"
 assertj-core = "3.23.1"
-junit-jupiter-api = "5.10.0"
+junit-platform = "1.10.1"
+kotlin-junit5 = "1.9.20"
+mockk = "1.9.3"
 
 [libraries]
-junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit-jupiter-engine" }
+apache-pdfbox = { module = "org.apache.pdfbox:pdfbox", version.ref = "apache-pdfbox" }
+kotlin-test-junit5 = { module = "org.jetbrains.kotlin:kotlin-test-junit5", version.ref = "kotlin-junit5" }
+junit-jupiter-engine = { module = "org.junit.jupiter:junit-jupiter-engine", version.ref = "junit5" }
+junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit5" }
+junit-platform-launcher = { module = "org.junit.platform:junit-platform-launcher", version.ref = "junit-platform" }
 assertj-core = { module = "org.assertj:assertj-core", version.ref = "assertj-core" }
-junit-jupiter-api = { module = "org.junit.jupiter:junit-jupiter-api", version.ref = "junit-jupiter-api" }
-
+mockk = { module = "io.mockk:mockk", version.ref = "mockk" }
 [plugins]
 jvm = { id = "org.jetbrains.kotlin.jvm", version = "1.9.20" }

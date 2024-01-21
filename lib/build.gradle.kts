@@ -10,11 +10,14 @@ repositories {
 }
 
 dependencies {
+	// apache pdfbox for low level pdf rendering
+	implementation(libs.apache.pdfbox)
+
 	// Use Kotlin's JUnit 5 integration
-	testImplementation("org.jetbrains.kotlin:kotlin-test-junit5")
+	testImplementation(libs.kotlin.test.junit5)
 
 	// Mockk dependency (not defined in libs.versions.toml, so using direct coordinates)
-	testImplementation("io.mockk:mockk:1.9.3")
+	testImplementation(libs.mockk)
 
 	// JUnit Jupiter API and Engine
 	testImplementation(libs.junit.jupiter.api)
@@ -24,7 +27,8 @@ dependencies {
 	testImplementation(libs.assertj.core)
 
 	// JUnit Platform Launcher (not defined in libs.versions.toml)
-	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+	testRuntimeOnly(libs.junit.platform.launcher)
+
 }
 
 java {
