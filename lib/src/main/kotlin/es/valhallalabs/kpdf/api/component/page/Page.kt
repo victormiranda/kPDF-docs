@@ -2,8 +2,11 @@ package es.valhallalabs.kpdf.api.component.page
 
 import es.valhallalabs.kpdf.api.component.Component
 import es.valhallalabs.kpdf.api.component.ComponentType
+import es.valhallalabs.kpdf.api.component.boxmodel.BoxModel
 import es.valhallalabs.kpdf.api.component.boxmodel.PageFormat
-import es.valhallalabs.kpdf.api.component.container.Container
+import es.valhallalabs.kpdf.api.component.container.Frame
+import es.valhallalabs.kpdf.api.component.style.BaseStyle
+import es.valhallalabs.kpdf.api.component.style.Style
 
 /**
  * Page interface represents a document page.
@@ -16,9 +19,14 @@ interface Page : Component {
 
 }
 
-/**
- * This subtype of page is represented with a container filling all the page
- */
-data class FullContainerPage(
-	override val box: PageFormat
-) : Page, Container
+
+class PageFrame(
+	override val box: BoxModel,
+	override val style: Style = BaseStyle()
+) : Page, Frame
+
+data class SinglePageComponent(
+	override val box: PageFormat,
+	val component: Component,
+	override val style: Style = BaseStyle()
+) : Page

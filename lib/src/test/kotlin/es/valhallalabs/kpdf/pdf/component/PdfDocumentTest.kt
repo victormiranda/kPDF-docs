@@ -4,8 +4,9 @@ import es.valhallalabs.kpdf.api.component.boxmodel.BoxModel
 import es.valhallalabs.kpdf.api.component.boxmodel.PageFormat
 import es.valhallalabs.kpdf.api.component.document.ClasspathDocumentResource
 import es.valhallalabs.kpdf.api.component.document.DocumentProperties
-import es.valhallalabs.kpdf.api.component.page.FullContainerPage
+import es.valhallalabs.kpdf.api.component.page.PageFrame
 import es.valhallalabs.kpdf.api.component.section.DocumentSection
+import es.valhallalabs.kpdf.api.component.style.BaseStyle
 import org.assertj.core.api.Assertions.assertThat
 import org.junit.jupiter.api.Test
 import java.time.Instant
@@ -15,17 +16,21 @@ internal class PdfDocumentTest {
 
 	private val document: PdfDocument = PdfDocument(
 		properties = DocumentProperties(
-			requestedAt = Instant.now(), jobId = UUID.randomUUID(), pageFormat = PageFormat.PAGE_BASE_A4
+			requestedAt = Instant.now(),
+			jobId = UUID.randomUUID(),
+			baseDocumentStyle = BaseStyle(),
+			pageFormat = PageFormat.PAGE_BASE_A4
 		),
 		resources = listOf(
 			ClasspathDocumentResource(resourceName = "Acme font", resourceLocation = "fonts/acme.ttf")
-		), sections = listOf(
+		),
+		sections = listOf(
 			DocumentSection(
 				box = PageFormat.PAGE_BASE_A4,
 				sectionName = "main section",
 				pages = listOf(
-					FullContainerPage(
-						box = PageFormat.PAGE_BASE_A4.innerBox as PageFormat
+					PageFrame(
+						box = PageFormat.PAGE_BASE_A4.innerBox
 					)
 				)
 			)
@@ -40,7 +45,7 @@ internal class PdfDocumentTest {
 	}
 
 	@Test fun `check basic A4 document object inner container size `() {
-		val firstPage: FullContainerPage = document.sections[0].pages[0] as FullContainerPage
+		val firstPage: PageFrame = document.sections[0].pages[0] as PageFrame
 
 		assertThat(firstPage.box.width.points).isEqualTo(523.2756f)
 		assertThat(firstPage.box.height.points).isEqualTo(769.88983f)

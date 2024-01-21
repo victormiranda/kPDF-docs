@@ -4,6 +4,7 @@ import es.valhallalabs.kpdf.api.component.document.Document
 import es.valhallalabs.kpdf.api.component.document.DocumentProperties
 import es.valhallalabs.kpdf.api.component.document.DocumentResource
 import es.valhallalabs.kpdf.api.component.section.DocumentSection
+import es.valhallalabs.kpdf.api.component.style.Style
 
 /**
  * PDF implementation of the Document interface.
@@ -13,7 +14,7 @@ import es.valhallalabs.kpdf.api.component.section.DocumentSection
  * @property properties Properties of the document.
  */
 data class PdfDocument(
-	val sections: List<DocumentSection>,
+	override val sections: List<DocumentSection>,
 	override val resources: List<DocumentResource>,
 	override val properties: DocumentProperties
 ) : Document {
@@ -21,4 +22,7 @@ data class PdfDocument(
 	override val box = properties.pageFormat
 
 	override val elements = sections
+
+	override val style: Style
+		get() = properties.baseDocumentStyle
 }
