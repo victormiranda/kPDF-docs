@@ -1,6 +1,7 @@
 package es.valhallalabs.kpdf.api.component.document
 
 import es.valhallalabs.kpdf.api.component.boxmodel.PageFormat
+import es.valhallalabs.kpdf.api.component.style.Style
 import java.time.Instant
 import java.util.UUID
 
@@ -17,6 +18,7 @@ data class DocumentProperties(
 	val jobId: JobId,
 	val generateIndexPage: Boolean = false,
 	val pageFormat: PageFormat,
+	val baseDocumentStyle: Style,
 	val requestedAt: Instant,
 	val processedAt: Instant = Instant.now(),
 )
