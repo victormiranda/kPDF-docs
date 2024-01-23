@@ -38,4 +38,8 @@ data class BoxPositioning(
 data class GrowBehaviour(
 	val expandWidth: Boolean = false,
 	val expandHeight: Boolean = false
-)
+) {
+	companion object {
+		val EXPAND_ALL = GrowBehaviour(expandWidth = true, expandHeight = true)
+	}
+}

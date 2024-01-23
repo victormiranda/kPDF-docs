@@ -1,5 +1,6 @@
 package es.valhallalabs.kpdf.api.component.boxmodel
 
+import es.valhallalabs.kpdf.api.size.PointSize
 import es.valhallalabs.kpdf.api.size.Size
 
 
@@ -14,7 +15,6 @@ import es.valhallalabs.kpdf.api.size.Size
  * @property paddings the paddings of the box model
  * @property margins the margins of the box model
  * @property positioning the positioning properties of the box model
- * @property parentBox reference to parent of this box model
  */
 interface BoxModel {
 	val width: Size
@@ -22,7 +22,6 @@ interface BoxModel {
 	val paddings: Paddings
 	val margins: Margins
 	val positioning: BoxPositioning
-	val parentBox: BoxModel?
 
 
 	val effectiveWidth: Size
@@ -32,29 +31,37 @@ interface BoxModel {
 		get() =
 			(height - paddings.verticalPadding - margins.verticalMargin)
 
+
+	val rectangle: Rectangle
+		get() = Rectangle(width = width, height = height)
 	val innerRectangle: Rectangle
 		get() = Rectangle(width = effectiveWidth, height = effectiveHeight)
 
 	val innerBox: BoxModel
 }
 
-open class Box(
+data class Box(
 	override val width: Size,
 	override val height: Size,
-	override val paddings: Paddings,
-	override val margins: Margins,
-	override val positioning: BoxPositioning,
-	override val parentBox: BoxModel? = null
+	override val paddings: Paddings = Paddings.NO_PADDINGS,
+	override val margins: Margins = Margins.NO_MARGINS,
+	override val positioning: BoxPositioning = BoxPositioning(),
 ) : BoxModel {
 
+	companion object {
+		fun pointBasedBox(width: Int, height: Int, growBehaviour: GrowBehaviour = GrowBehaviour()): Box = Box(
+			width = PointSize(width.toFloat()),
+			height = PointSize(height.toFloat()),
+			positioning = BoxPositioning(growBehaviour = growBehaviour)
+		)
+	}
 	override val innerBox: BoxModel
 		get() = Box(
 			width = this.effectiveWidth,
 			height = this.effectiveHeight,
 			paddings = Paddings.NO_PADDINGS,
 			margins = Margins.NO_MARGINS,
-			positioning = this.positioning,
-			parentBox = this
+			positioning = this.positioning
 		)
 
 }

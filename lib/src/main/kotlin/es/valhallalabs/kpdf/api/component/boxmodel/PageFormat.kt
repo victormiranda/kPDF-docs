@@ -21,7 +21,6 @@ data class PageFormat(
 	override val height: Size,
 	override val paddings: Paddings,
 	override val margins: Margins,
-	override val parentBox: BoxModel? = null,
 	override val positioning: BoxPositioning
 ) : BoxModel {
 	companion object {
@@ -52,7 +51,6 @@ data class PageFormat(
 			height = this.effectiveHeight,
 			paddings = Paddings.NO_PADDINGS,
 			margins = Margins.NO_MARGINS,
-			positioning = this.positioning,
-			parentBox = this
+			positioning = this.positioning
 		)
 }
