@@ -22,3 +22,14 @@ open class BaseStyle(
 	override val backgroundColor: Color = Color.TRANSPARENT,
 	override val foregroundColor: Color = Color.BLACK
 ) : Style
+
+data class PlainStyle(
+	override val parentStyle: Style? = null,
+	override val backgroundColor: Color = Color.TRANSPARENT,
+	override val foregroundColor: Color = Color.BLACK
+) : BaseStyle(
+	name = "PLAIN_STYLE",
+	parentStyle = parentStyle,
+	backgroundColor = backgroundColor,
+	foregroundColor = foregroundColor
+)
