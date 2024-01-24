@@ -6,6 +6,10 @@ interface Layout : ComposedComponent {
 
 	val layoutType: LayoutType
 
+	val parentLayout: Layout?
+
+	val rootLayout: Layout
+
 	override val elements: List<WrappedComponent>
 
 }

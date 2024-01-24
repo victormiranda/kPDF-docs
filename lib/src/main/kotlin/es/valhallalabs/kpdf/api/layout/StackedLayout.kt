@@ -21,12 +21,16 @@ data class RowLayout(
 ) : StackedLayout {
 	override val layoutType: LayoutType
 		get() = LayoutType.ROW
+	override val parentLayout: Layout
+		get() = TODO("Not yet implemented")
+	override val rootLayout: Layout
+		get() = TODO("Not yet implemented")
 }
 
 data class ColumnLayout(
 	override val box: BoxModel,
 	override val stackStyle: Style,
-	override val elements: List<StackedWrappedComponent>
+	override val elements: List<StackedWrappedComponent>, override val parentLayout: Layout?, override val rootLayout: Layout
 ) : StackedLayout {
 	override val layoutType: LayoutType
 		get() = LayoutType.ROW
