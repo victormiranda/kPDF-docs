@@ -4,7 +4,6 @@ import es.valhallalabs.kpdf.api.component.Component
 import es.valhallalabs.kpdf.api.component.ComponentType
 import es.valhallalabs.kpdf.api.component.boxmodel.BoxModel
 import es.valhallalabs.kpdf.api.component.boxmodel.PageFormat
-import es.valhallalabs.kpdf.api.component.container.Frame
 import es.valhallalabs.kpdf.api.component.style.BaseStyle
 import es.valhallalabs.kpdf.api.component.style.Style
 
@@ -23,7 +22,7 @@ interface Page : Component {
 class PageFrame(
 	override val box: BoxModel,
 	override val style: Style = BaseStyle()
-) : Page, Frame
+) : Page
 
 data class SinglePageComponent(
 	override val box: PageFormat,

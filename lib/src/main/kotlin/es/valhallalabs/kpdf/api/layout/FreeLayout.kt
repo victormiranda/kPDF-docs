@@ -8,7 +8,7 @@ import es.valhallalabs.kpdf.api.component.style.Style
 class FreeLayout(
 	override val box: BoxModel,
 	override val style: Style,
-	override val elements: List<RelativePositionedWrappedComponent>
+	override val elements: List<RelativePositionedWrappedComponent>, override val parentLayout: Layout?, override val rootLayout: Layout
 ) : Layout, ComposedComponent {
 
 	override val layoutType: LayoutType
